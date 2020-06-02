@@ -1,0 +1,54 @@
+version: "3.7"
+services:
+
+  service1:
+    container_name: service1
+    build:
+      context: ./sharing-service
+      dockerfile: Dockerfile
+    depends_on:
+      - eureka
+    environment:
+      - EUREKA_URI=${GLOBAL_EUREKA_URI}
+
+  service2:
+    container_name: service2
+    build:
+      context: ./sharing-service
+      dockerfile: Dockerfile
+    depends_on:
+      - eureka
+    environment:
+      - EUREKA_URI=${GLOBAL_EUREKA_URI}
+
+  service3:
+    container_name: service3
+    build:
+      context: ./sharing-service
+      dockerfile: Dockerfile
+    depends_on:
+      - eureka
+    environment:
+      - EUREKA_URI=${GLOBAL_EUREKA_URI}
+
+  client:
+    container_name: client
+    build:
+      context: ./sharing-client
+      dockerfile: Dockerfile
+    environment:
+      - EUREKA_URI=${GLOBAL_EUREKA_URI}
+    depends_on:
+      - service1
+      - service2
+      - service3
+    ports:
+      - 8080:8080
+
+  eureka:
+    container_name: eureka
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - 8761:8761

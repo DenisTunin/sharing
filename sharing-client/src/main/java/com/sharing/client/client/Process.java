@@ -12,11 +12,10 @@ public class Process {
     private final Logger logger = LoggerFactory.getLogger(Process.class);
 
     @Autowired
-    private SharingClient sharingClient;
+    private SharingClient client;
 
-
-    @Scheduled(fixedDelay = 5000)
-    public void process(){
-        logger.info("response '{}'", sharingClient.mock());
+    @Scheduled(fixedDelay = 1000)
+    public void process() {
+        logger.info("response '{}'", client.mock());
     }
 }

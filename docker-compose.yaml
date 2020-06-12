@@ -10,6 +10,9 @@ services:
       - eureka
     environment:
       - EUREKA_URI=${GLOBAL_EUREKA_URI}
+#      - EUREKA_CLIENT_REGISTRYFETCHINTERVALSECONDS=2
+#      - EUREKA_INSTANCE_LEASERENEWALINTERWALINSECONDS=1
+#      - EUREKA_INSTANCE_LEASEEXPIRATIONDURATIONINSECONDS=5
 
   service2:
     container_name: service2
@@ -20,6 +23,9 @@ services:
       - eureka
     environment:
       - EUREKA_URI=${GLOBAL_EUREKA_URI}
+#      - EUREKA_CLIENT_REGISTRYFETCHINTERVALSECONDS=2
+#      - EUREKA_INSTANCE_LEASERENEWALINTERWALINSECONDS=1
+#      - EUREKA_INSTANCE_LEASEEXPIRATIONDURATIONINSECONDS=5
 
   service3:
     container_name: service3
@@ -30,6 +36,10 @@ services:
       - eureka
     environment:
       - EUREKA_URI=${GLOBAL_EUREKA_URI}
+#      - EUREKA_CLIENT_REGISTRYFETCHINTERVALSECONDS=2
+#      - EUREKA_INSTANCE_LEASERENEWALINTERWALINSECONDS=1
+#      - EUREKA_INSTANCE_LEASEEXPIRATIONDURATIONINSECONDS=5
+
 
   client:
     container_name: client
@@ -50,5 +60,9 @@ services:
     build:
       context: ./eureka-server
       dockerfile: Dockerfile
+#      Service settings
+#    environment:
+#      - EUREKA_SERVER_RENEWALPERCENTTHRESHOLD=0.30
+#      - EUREKA_SERVER_RENEWALTHRESHOLDUPDATEINTERVALMS=1000
     ports:
       - 8761:8761
